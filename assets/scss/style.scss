@@ -1,0 +1,171 @@
+.mr-8 {
+    margin-right: 8px !important;
+}
+.wpco {
+    &-logo {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &-panel {
+        margin-top: 15px;
+        border: 1px solid #ddd;
+        display: flex;
+        box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+        &-left {
+            background-color: #ededed;
+            border-radius: 3px 0 0 3px;
+            border-right: 1px solid #ddd;
+            display: table-cell;
+            position: relative;
+            vertical-align: top;
+            width: 250px;
+        }
+        &-right {
+            border-radius: 0 4px 4px 0;
+            position: relative;
+            background-color: #fff;
+            width: calc(100% - 250px);
+        }
+        &-main {
+            display: none;
+            &.wpco-tab-current {
+                display: initial;
+            }
+            &-header {
+                background-color: #f6f7f9;
+                padding: 15px 10px 15px 15px;
+                font-size: 20px;
+                font-weight: 500;
+                color: #334155;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 30px;
+            }
+        }
+        &-section {
+            padding: 15px;
+            &-header {
+                margin: 0;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 5px;
+                margin-bottom: 15px;
+                font-size: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                input {
+                    width: 36%;
+                }
+            }
+        }
+        &-group {
+            &-action {
+                display: flex;
+            }
+        }
+    }
+    &-menu {
+        &-current {
+            background-color: #fff;
+        }
+        &-item {
+            border-bottom: 1px solid #ddd;
+            transition: all 0.5s;
+            &:hover {
+                background-color: #fff;
+            }
+            &:first-child {
+                border-top: 1px solid #ddd;
+            }
+        }
+        &-goto {
+            display: flex;
+            padding: 14px 20px;
+            color: #383838;
+            font-size: 15px;
+            font-weight: 500;
+            text-decoration: none;
+            &:hover {
+                color: #383838;
+            }
+        }
+    }
+    &-empty {
+        font-size: 20px;
+        padding: 50px;
+        background-color: #fff1f1;
+        color: #000;
+        text-align: center;
+    }
+    &-submit {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        height: 60px;
+        padding: 0 10px;
+        border-bottom: 1px solid #ddd;
+        &.bottom {
+            border-bottom: none;
+            border-top: 1px solid #ddd;
+        }
+    }
+    &-fields {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &.wpco-fields-tool {
+            justify-content: flex-start;
+            .input-file {
+                width: 50%;
+            }
+        }
+        .field {
+            width: 30%;
+            &:nth-child(3) {
+                width: 25%;
+            }
+            &:last-child {
+                width: 12%;
+                button {
+                    width: 100%;
+                }
+            }
+            input,
+            select {
+                width: 100%;
+                height: 32px;
+            }
+        }
+    }
+    &-options {
+        padding: 10px;
+    }
+    &-option {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        &-label {
+            font-size: 16px;
+            padding-bottom: 5px;
+            span {
+                color: #aaa;
+                font-size: 14px;
+                font-style: italic;
+            }
+        }
+        &-input {
+            padding-bottom: 15px;
+            input,
+            textarea {
+                width: 100%;
+            }
+        }
+    }
+}
