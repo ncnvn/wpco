@@ -53,7 +53,7 @@ class WPCO_Ajax
         $table_name = $wpdb->prefix . WPCO_TABLE;
 
         $wpdb->query("TRUNCATE TABLE {$table_name}");
-        $groupData = $_POST['group'];
+        $groupData = isset($_POST['group']) ? (array) sanitize_key($_POST['group']) : [];
         if (!empty($groupData)) {
             foreach ($groupData as $group_id => $group) {
                 $wpdb->insert($table_name, array(
@@ -78,7 +78,7 @@ class WPCO_Ajax
         }
 
         $success = sprintf('<div class="alert alert-success">%s</div>', __('Successfully saved!', 'wpco'));
-        $options = $_POST['data'];
+        $options = isset($_POST['data']) ? (array) sanitize_key($_POST['data']) : [];
         foreach ($options as $option => $value) {
             update_option(sanitize_text_field($option), maybe_serialize($value));
         }
