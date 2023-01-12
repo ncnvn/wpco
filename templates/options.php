@@ -51,12 +51,12 @@ function generate_input($field)
                     $fields = unserialize($option->option_field);
                     ?>
 
-                    <div id="wpco_menu_option_<?php echo $option->id ?>" class="wpco-panel-main <?php echo empty($key) ? 'wpco-tab-current' : '' ?>">
-                        <form id="wpco_settings_option_form_<?php echo $option->id ?>" class="wpco-settings-option-form" method="POST">
+                    <div id="wpco_menu_option_<?php echo esc_attr($option->id) ?>" class="wpco-panel-main <?php echo empty($key) ? 'wpco-tab-current' : '' ?>">
+                        <form id="wpco_settings_option_form_<?php echo esc_attr($option->id) ?>" class="wpco-settings-option-form" method="POST">
                             <?php wp_nonce_field(WPCO_SETTING_KEY_GROUP); ?>
 
                             <div class="wpco-submit top">
-                                <button type="button" class="button button-primary wpco-submit-option-btn" data-form-id="wpco_settings_option_form_<?php echo $option->id ?>"><?php echo __('Save options', 'wpco'); ?></button>
+                                <button type="button" class="button button-primary wpco-submit-option-btn" data-form-id="wpco_settings_option_form_<?php echo esc_attr($option->id) ?>"><?php echo __('Save options', 'wpco'); ?></button>
                             </div>
 
                             <div class="wpco-panel-main-header">
