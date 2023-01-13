@@ -53,14 +53,29 @@ class WPCO_Ajax
         $table_name = $wpdb->prefix . WPCO_TABLE;
 
         $wpdb->query("TRUNCATE TABLE {$table_name}");
-        $groupData = isset($_POST['group']) ? (array) sanitize_key($_POST['group']) : [];
-        if (!empty($groupData)) {
-            foreach ($groupData as $group_id => $group) {
-                $wpdb->insert($table_name, array(
-                    'option_group' => sanitize_text_field($group['group_name']),
-                    'option_group_order' => intval($group_id),
-                    'option_field' => maybe_serialize($group['fields'])
-                ));
+
+        if (isset($_POST['group']) && is_array($_POST['group'])) {
+            $groupData = $_POST['group'];
+            $groupData = stripslashes_deep($groupData);
+            $groupData = array_values($groupData);
+
+            if (!empty($groupData)) {
+                foreach ($groupData as $group_id => $group) {
+                    $order_number = !empty($group_id) ? absint($group_id) : 0;
+                    $option_group = sanitize_text_field($group['group_name']);
+
+                    $option_field = [];
+                    if (isset($group['fields']) && is_array($group['fields'])) {
+                        $option_field = $group['fields'];
+                    }
+                    $option_field = maybe_serialize($option_field);
+
+                    $wpdb->insert($table_name, array(
+                        'option_group' => $option_group,
+                        'option_group_order' => $order_number,
+                        'option_field' => $option_field
+                    ));
+                }
             }
         }
 
@@ -78,9 +93,19 @@ class WPCO_Ajax
         }
 
         $success = sprintf('<div class="alert alert-success">%s</div>', __('Successfully saved!', 'wpco'));
-        $options = isset($_POST['data']) ? (array) sanitize_key($_POST['data']) : [];
-        foreach ($options as $option => $value) {
-            update_option(sanitize_text_field($option), maybe_serialize($value));
+
+        if (isset($_POST['data']) && is_array($_POST['data'])) {
+            $options = $_POST['data'];
+            $options = stripslashes_deep($options);
+
+            if (!empty($options)) {
+                foreach ($options as $option => $value) {
+                    $option = sanitize_text_field($option);
+                    $value = maybe_serialize($value);
+
+                    update_option($option, $value);
+                }
+            }
         }
 
         wp_send_json_success($success);
